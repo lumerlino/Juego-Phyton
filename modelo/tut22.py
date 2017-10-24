@@ -193,7 +193,7 @@ def main():
             pochoclo_x = 900
             pochoclo_y = random.randint(450,700)
         else:
-                pochoclo_x -= 5        
+                pochoclo_x -= 10        
         
         if panqueques_x <= 300 - 370:
             panqueques_x = 900
