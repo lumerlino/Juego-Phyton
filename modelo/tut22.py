@@ -12,7 +12,7 @@ class Fondo(pygame.sprite.Sprite):
         self.imagen=pygame.image.load("fondomovil.gif").convert_alpha()
         self.rect=self.imagen.get_rect()
     def update(self,pantalla,vx,vy):
-        self.rect.move_ip(-vx,-vy)
+        self.rect.move_ip(-vx,0)
         pantalla.blit(self.imagen,self.rect)
 
                      
@@ -20,10 +20,10 @@ class Fondo(pygame.sprite.Sprite):
 class Player(pygame.sprite.Sprite): #hereda los modulos de sprite
     def __init__(self):
         #creo 4 imagenes
-        self.imagen1=pygame.image.load("chabon1.png").convert_alpha()
-        self.imagen2=pygame.image.load("chabon2.png").convert_alpha()
-        self.imagen3=pygame.image.load("chabon3.png").convert_alpha()
-        self.imagen4=pygame.image.load("chabon4.png").convert_alpha()
+        self.imagen1=pygame.image.load("chavon1.png").convert_alpha()  #CARGA IMAGENES DEL JUGADOR
+        self.imagen2=pygame.image.load("chavon2.png").convert_alpha()
+        self.imagen3=pygame.image.load("chavon3.png").convert_alpha()
+        self.imagen4=pygame.image.load("chavon4.png").convert_alpha()
         
         
         # creo la lista de las imaganes
@@ -48,7 +48,7 @@ class Player(pygame.sprite.Sprite): #hereda los modulos de sprite
     def mover(self,vx,vy):
         self.rect.move_ip(vx,vy)
         
-      #funcion principal de actualizacion   
+        #funcion principal de actualizacion   
     def update(self,superficie,vx,vy,t):
         # si no se mueve self.estamoviendo=FALSE
         if (vx,vy)==(0,0): self.estamoviendo=False
@@ -71,7 +71,7 @@ class Player(pygame.sprite.Sprite): #hereda los modulos de sprite
         #finalmente pintar en la pantalla
         superficie.blit(self.imagen,self.rect)
         
-    #funcion que se encarga de cambiar de imagen    
+        #funcion que se encarga de cambiar de imagen    
     def nextimage(self):
         self.imagen_actual+=1
         
@@ -81,13 +81,12 @@ class Player(pygame.sprite.Sprite): #hereda los modulos de sprite
 
 
 def main():
-    import pygame
     
     pygame.init()
    
-    pantalla=pygame.display.set_mode((900,800))
+    pantalla=pygame.display.set_mode((900,700))
     salir=False
-    reloj1= pygame.time.Clock()
+    reloj1= pygame.time.Clock()  #CREO UN RELOJ PARA LOS FPS
     
     #INICIALIZACION DE VARIABLES DE IMAGENES
     manzana_x = 800
@@ -164,46 +163,46 @@ def main():
            
         #recs1.mover()
       
-        pantalla.fill((160,160,160))
+        pantalla.fill((160,160,160)) #PINTA LA PANTALLA DE GRIS
         
-        fondo1.update(pantalla,vx,vy)
+        fondo1.update(pantalla,vx,vy) #EL FONDO SIGUE AL JUGADOR
 
         
-        
-        if manzana_x <= 300 - 370:
-            manzana_x = 900
-            manzana_y = random.randint(400,500)
+        #PARA LA SEGUNDA VEZ QUE APAREZCAN
+        if manzana_x <= -70:  #PARA CUANDO LA IMAGEN ESTE EN -70 DE X
+            manzana_x = 900   #VOLVER A 900 DE X
+            manzana_y = random.randint(400,650) # EN UN RANGO DE 400,650 DE Y
         else:
                 manzana_x -= 5
                 
         
         if cereza_x <= 300 - 370:
             cereza_x = 900
-            cereza_y = random.randint(450,700)
+            cereza_y = random.randint(400,650)
         else:
                 cereza_x -= 5
                 
         if ensalada_x <= 300 - 370:
             ensalada_x = 900
-            ensalada_y = random.randint(500,650)
+            ensalada_y = random.randint(400,650)
         else:
                 ensalada_x -= 5
                 
         if pochoclo_x <= 300 - 370:
             pochoclo_x = 900
-            pochoclo_y = random.randint(450,700)
+            pochoclo_y = random.randint(400,650)
         else:
-                pochoclo_x -= 10        
+                pochoclo_x -= 5        
         
         if panqueques_x <= 300 - 370:
             panqueques_x = 900
-            panqueques_y = random.randint(500,700)
+            panqueques_y = random.randint(400,650)
         else:
                 panqueques_x -= 5
                 
         if torta_x <= 300 - 370:
             torta_x = 900
-            torta_y = random.randint(650,700)
+            torta_y = random.randint(400,650)
         else:
                 torta_x -= 5 
         
