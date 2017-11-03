@@ -1,8 +1,5 @@
-import pygame
-from Game_Play import *
 from Game_Menu import *
-# Import Modulos
-
+from Game_Play import *
 def main():
      
     '''Funcion principal del programa. '''
@@ -31,12 +28,12 @@ def main():
     # juego.Operation1.play()
     
     pygame.mixer.music.load('Imagenes/musica.ogg')
+    pygame.mixer.music.set_volume(0.1)
     pygame.mixer.music.play(3)
-    #pygame.mixer.music.get_volume(0.5)
 
     # Bucle principal
     while not hecho:        
-         
+        
         # Procesa los eventos (pulsaciones del teclado, clicks del raton, etc.)
         if not menu.mostrar_Menu:
             hecho = menu.procesa_eventos()

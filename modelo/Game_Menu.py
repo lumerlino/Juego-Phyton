@@ -1,7 +1,6 @@
-# Importamos las bibliotecas
-from Boton import *
 import pygame
 import random
+from Boton import *
 
 class Game_Menu():
     
@@ -20,9 +19,14 @@ class Game_Menu():
         self.pos= pygame.mouse.get_pos()
         self.image = pygame.Surface([30, 30])
         self.rect = self.image.get_rect()
-        self.botonini=boton(self.conluz,self.sinluz,10,200)
-        self.botonsal=boton(self.conluz1,self.sinluz1,10,500)
+        self.botonini=Boton(self.conluz,self.sinluz,10,200)
+        self.botonsal=Boton(self.conluz1,self.sinluz1,10,500)
         ''' sonidos '''
+        self.pulsar_sonido = pygame.mixer.Sound("sounds/Slurp.ogg")
+        #self.Operation1 = pygame.mixer.Sound("sounds/30 - Mission Accomplished.ogg")
+        #music = os.path.join('sounds', '34 - A Violent Conquest.mp3')
+        #self.Operation2 = pygame.mixer.music.load(music)
+        
         
     def procesa_eventos(self):
         
@@ -35,6 +39,7 @@ class Game_Menu():
             if evento.type == pygame.MOUSEBUTTONDOWN:
                 if self.rect.colliderect(self.botonini.rect) and not self.mostrar_Menu:
                     self.mostrar_Menu=True
+                    self.pulsar_sonido.play()
                 if self.rect.colliderect(self.botonsal.rect) and not self.mostrar_Menu:
                     return True
         return False
